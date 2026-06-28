@@ -136,7 +136,7 @@ export default function Footer() {
             © {new Date().getFullYear()} MaquiParts Colombia S.A.S — Todos los derechos reservados.
           </p>
           <a
-            href="https://alicbarandica.dev"
+            href="https://alicbarandicadev.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="font-body text-[10px] flex items-center gap-1.5 transition-colors duration-200 group"
