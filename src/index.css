@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: #0D0D0D;
+    color: #F5F5F0;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+
+  /* ── Buttons ── */
+  .btn-mq-yellow {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 font-body font-semibold text-sm uppercase tracking-widest rounded transition-all duration-200 cursor-pointer select-none;
+    background: #FFC300;
+    color: #0D0D0D;
+  }
+  .btn-mq-yellow:hover {
+    background: #E6A800;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255,195,0,0.25);
+  }
+
+  .btn-mq-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 font-body font-semibold text-sm uppercase tracking-widest rounded transition-all duration-200 cursor-pointer select-none;
+    background: transparent;
+    color: #F5F5F0;
+    border: 1.5px solid rgba(245,245,240,0.3);
+  }
+  .btn-mq-outline:hover {
+    border-color: #FFC300;
+    color: #FFC300;
+  }
+
+  .btn-wapp {
+    @apply inline-flex items-center gap-2.5 px-5 py-3 font-body font-semibold text-sm rounded transition-all duration-200 cursor-pointer select-none;
+    background: rgba(37,211,102,0.08);
+    color: #25D366;
+    border: 1px solid rgba(37,211,102,0.28);
+  }
+  .btn-wapp:hover {
+    background: #25D366;
+    color: #0D0D0D;
+    border-color: #25D366;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37,211,102,0.25);
+  }
+
+  .btn-wapp-sm {
+    @apply inline-flex items-center gap-1.5 px-4 py-2.5 font-body font-medium text-xs rounded transition-all duration-200 cursor-pointer select-none w-full justify-center;
+    background: rgba(37,211,102,0.08);
+    color: #25D366;
+    border: 1px solid rgba(37,211,102,0.25);
+  }
+  .btn-wapp-sm:hover {
+    background: #25D366;
+    color: #0D0D0D;
+  }
+
+  /* ── Labels / tags ── */
+  .label-mq {
+    @apply font-body text-[10px] font-semibold uppercase tracking-[0.25em];
+    color: #FFC300;
+  }
+
+  .tag-mq {
+    @apply font-body text-[9px] font-semibold uppercase tracking-[0.2em] px-2.5 py-1 rounded-sm;
+    background: rgba(255,195,0,0.12);
+    color: #FFC300;
+    border: 1px solid rgba(255,195,0,0.2);
+  }
+
+  .tag-red {
+    @apply font-body text-[9px] font-semibold uppercase tracking-[0.15em] px-2.5 py-1 rounded-sm;
+    background: rgba(204,34,0,0.15);
+    color: #FF6B4A;
+    border: 1px solid rgba(204,34,0,0.25);
+  }
+
+  /* ── Dividers ── */
+  .divider-mq {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255,195,0,0.35), transparent);
+  }
+
+  /* ── Cards ── */
+  .card-product {
+    @apply relative overflow-hidden flex flex-col;
+    background: #1E1E1E;
+    border: 1px solid #2A2A2A;
+    border-radius: 4px;
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-product:hover {
+    border-color: rgba(255,195,0,0.45);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,195,0,0.12);
+  }
+
+  /* ── Section headings ── */
+  .section-heading {
+    @apply font-display font-bold uppercase text-mq-white;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Yellow underline accent ── */
+  .accent-line {
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #FFC300;
+    border-radius: 2px;
+  }
+}
+
+/* ── Marquee animation ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 35s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── Diagonal clip hero ── */
+.hero-clip {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #141414; }
+::-webkit-scrollbar-thumb { background: #3A3A3A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #FFC300; }
+
+/* ── Selection ── */
+::selection { background: #FFC300; color: #0D0D0D; }

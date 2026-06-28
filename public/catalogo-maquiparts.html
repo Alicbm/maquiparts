@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo MaquiParts 2024 — Repuestos para Maquinaria Pesada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow: #FFC300;
+      --yellow-dark: #E6A800;
+      --black: #0D0D0D;
+      --dark: #141414;
+      --steel: #1E1E1E;
+      --plate: #2A2A2A;
+      --gray: #888;
+      --gray-light: #BBBBBB;
+      --white: #F5F5F0;
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: white;
+      color: #1A1A1A;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── COVER PAGE ── */
+    .cover {
+      page-break-after: always;
+      width: 210mm;
+      height: 297mm;
+      background: #0D0D0D;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cover-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,195,0,0.03) 1px, transparent 1px),
+        linear-gradient(to right, rgba(255,195,0,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .cover-left-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 8px;
+      background: linear-gradient(to bottom, #FFC300, #E6A800);
+    }
+
+    .cover-content {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px 48px 40px 56px;
+    }
+
+    .cover-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #FFC300;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .cover-label::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: #FFC300;
+    }
+
+    .cover-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .cover-logo-icon {
+      width: 52px;
+      height: 52px;
+      background: #FFC300;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cover-brand {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #F5F5F0;
+    }
+
+    .cover-brand span {
+      color: #FFC300;
+    }
+
+    .cover-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-top: -8px;
+    }
+
+    .cover-h1 {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-size: 5.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.88;
+      color: #F5F5F0;
+      margin-bottom: 8px;
+    }
+
+    .cover-h1 .accent {
+      color: #FFC300;
+      display: block;
+    }
+
+    .cover-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      max-width: 340px;
+      margin-top: 24px;
+    }
+
+    .cover-divider {
+      width: 40px;
+      height: 2px;
+      background: #FFC300;
+      margin: 20px 0;
+    }
+
+    .cover-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid rgba(255,195,0,0.15);
+      border-radius: 2px;
+      margin-top: 40px;
+      overflow: hidden;
+    }
+
+    .cover-stat {
+      padding: 20px 24px;
+      border-right: 1px solid rgba(255,195,0,0.1);
+    }
+
+    .cover-stat:last-child { border-right: none; }
+
+    .cover-stat-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #FFC300;
+      line-height: 1;
+    }
+
+    .cover-stat-lbl {
+      font-family: 'Inter', sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 4px;
+    }
+
+    .cover-footer {
+      position: relative;
+      padding: 20px 56px;
+      border-top: 1px solid rgba(255,195,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cover-footer-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .cover-footer-year {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: rgba(255,195,0,0.3);
+    }
+
+    .cover-watermark {
+      position: absolute;
+      right: -20px;
+      bottom: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20rem;
+      font-weight: 800;
+      color: rgba(255,195,0,0.025);
+      letter-spacing: -0.06em;
+      line-height: 0.85;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ── CATEGORY PAGES ── */
+    .category-page {
+      page-break-before: always;
+      width: 210mm;
+      min-height: 297mm;
+      background: white;
+      padding: 0;
+    }
+
+    .cat-header {
+      background: #0D0D0D;
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cat-header::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 6px;
+      background: #FFC300;
+    }
+
+    .cat-header-left {
+      padding-left: 14px;
+    }
+
+    .cat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,195,0,0.6);
+      margin-bottom: 4px;
+    }
+
+    .cat-name {
+      font-family: 'Barlow Condensed', Impact, sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #F5F5F0;
+      letter-spacing: -0.01em;
+      line-height: 1;
+    }
+
+    .cat-header-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: rgba(255,195,0,0.08);
+      letter-spacing: -0.05em;
+    }
+
+    /* Product table */
+    .product-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+    }
+
+    .product-table thead {
+      background: #F5F5F0;
+    }
+
+    .product-table thead th {
+      font-family: 'Inter', sans-serif;
+      font-size: 7px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #888;
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 2px solid #FFC300;
+    }
+
+    .product-table tbody tr:nth-child(even) {
+      background: #FAFAFA;
+    }
+
+    .product-table tbody tr:hover { background: #FFF9E6; }
+
+    .product-table tbody td {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      padding: 10px 16px;
+      border-bottom: 1px solid #EBEBEB;
+      vertical-align: middle;
+      color: #1A1A1A;
+    }
+
+    .product-table .td-name {
+      font-weight: 600;
+      color: #0D0D0D;
+      font-size: 9.5px;
+    }
+
+    .product-table .td-ref {
+      font-family: 'Inter', sans-serif;
+      font-size: 8px;
+      color: #888;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+
+    .product-table .td-brand {
+      font-weight: 700;
+      font-size: 8.5px;
+      color: #0D0D0D;
+      letter-spacing: 0.05em;
+    }
+
+    .stock-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 7.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .stock-dot::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .stock-dot.in-stock { color: #1A7A1A; }
+    .stock-dot.in-stock::before { background: #25D366; }
+    .stock-dot.consult { color: #888; }
+    .stock-dot.consult::before { background: #CCCCCC; }
+
+    .tag-pill {
+      display: inline-block;
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 2px;
+      background: #FFC300;
+      color: #0D0D0D;
+    }
+
+    .td-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: #CCCCCC;
+      width: 28px;
+    }
+
+    /* Contact footer band */
+    .contact-band {
+      background: #0D0D0D;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .contact-band-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 7px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .contact-band-wapp {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #25D366;
+      letter-spacing: 0.05em;
+    }
+
+    /* Print only — screen preview */
+    @media screen {
+      body {
+        background: #444;
+        padding: 20px;
+      }
+      .cover, .category-page {
+        max-width: 794px;
+        margin: 0 auto 20px;
+        box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      }
+      .print-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 12px 24px;
+        background: #FFC300;
+        color: #0D0D0D;
+        border: none;
+        border-radius: 4px;
+        font-family: 'Inter', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      }
+      .print-btn:hover { background: #E6A800; }
+    }
+
+    @media print {
+      .print-btn { display: none; }
+      body { background: white; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">Imprimir / Guardar PDF</button>
+
+  <!-- ══ COVER ══ -->
+  <div class="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-left-bar"></div>
+    <div class="cover-watermark">MQ</div>
+
+    <div class="cover-content">
+      <div class="cover-label">Catálogo oficial de repuestos · Edición 2024</div>
+
+      <div class="cover-logo-row">
+        <div class="cover-logo-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="#0D0D0D">
+            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.68.07-1.08s-.03-.73-.07-1.08l2.31-1.81c.21-.16.27-.45.14-.68l-2.2-3.81c-.12-.22-.39-.3-.61-.22l-2.74 1.1c-.57-.44-1.18-.81-1.86-1.08L14.06.38C14 .15 13.79 0 13.56 0h-3.12c-.23 0-.44.15-.5.38l-.41 2.92c-.68.27-1.29.64-1.86 1.08L4.93 3.28c-.22-.08-.49 0-.61.22L2.12 7.31c-.13.23-.07.52.14.68l2.31 1.81C4.53 10.27 4.5 10.62 4.5 11s.03.73.07 1.08L2.26 13.89c-.21.16-.27.45-.14.68l2.2 3.81c.12.22.39.3.61.22l2.74-1.1c.57.44 1.18.81 1.86 1.08l.41 2.92c.06.23.27.38.5.38h3.12c.23 0 .44-.15.5-.38l.41-2.92c.68-.27 1.29-.64 1.86-1.08l2.74 1.1c.22.08.49 0 .61-.22l2.2-3.81c.12-.23.07-.52-.14-.68l-2.31-1.81z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="cover-brand">MAQUI<span>PARTS</span></div>
+          <div class="cover-subtitle">Repuestos &amp; Maquinaria · Colombia</div>
+        </div>
+      </div>
+
+      <div class="cover-h1">
+        Repuestos
+        <span class="accent">Maquinaria</span>
+        Pesada
+      </div>
+
+      <div class="cover-divider"></div>
+      <div class="cover-desc">
+        Catálogo oficial de repuestos originales y de línea para maquinaria pesada, camiones de carga y equipos de construcción. Todos los productos cuentan con certificación de origen y garantía de fábrica.
+      </div>
+
+      <div class="cover-stats">
+        <div class="cover-stat">
+          <div class="cover-stat-val">20+</div>
+          <div class="cover-stat-lbl">Años en el mercado</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-val">5.000+</div>
+          <div class="cover-stat-lbl">Referencias en stock</div>
+        </div>
+        <div class="cover-stat">
+          <div class="cover-stat-val">50+</div>
+          <div class="cover-stat-lbl">Marcas autorizadas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div>
+        <div class="cover-footer-text">Distribuidores autorizados · Bogotá, Colombia</div>
+        <div class="cover-footer-text" style="margin-top:4px;">+57 300 123 4567 · info@maquiparts.co</div>
+      </div>
+      <div class="cover-footer-year">2024</div>
+    </div>
+  </div>
+
+  <!-- ══ MOTOR ══ -->
+  <div class="category-page">
+    <div class="cat-header">
+      <div class="cat-header-left">
+        <div class="cat-label">Categoría 01</div>
+        <div class="cat-name">Motor</div>
+      </div>
+      <div class="cat-header-logo">MTR</div>
+    </div>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th style="width:28px">#</th>
+          <th style="width:42%">Descripción del Repuesto</th>
+          <th>Referencia</th>
+          <th>Marca</th>
+          <th>Stock</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-num">01</td>
+          <td><div class="td-name">Turbocompresor Volvo D13</div></td>
+          <td class="td-ref">GAR-854800-5003S</td>
+          <td class="td-brand">GARRETT</td>
+          <td><span class="stock-dot in-stock">En stock</span></td>
+          <td><span class="tag-pill">Alta demanda</span></td>
+        </tr>
+        <tr>
+          <td class="td-num">02</td>
+          <td><div class="td-name">Kit de Empaques Motor Cummins ISX</div></td>
+          <td class="td-ref">CUM-4089966</td>
+          <td class="td-brand">CUMMINS</td>
+          <td><span class="stock-dot in-stock">En stock</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="td-num">03</td>
+          <td><div class="td-name">Pistón y Anillos Caterpillar C15</div></td>
+          <td class="td-ref">CAT-2244688</td>
+          <td class="td-brand">CAT</td>
+          <td><span class="stock-dot in-stock">En stock</span></td>
+          <td><span class="tag-pill">Original</span></td>
+        </tr>
+        <tr>
+          <td class="td-num">04</td>
+          <td><div class="td-name">Árbol de Levas Cummins N14</div></td>
+          <td class="td-ref">CUM-3803452</td>
+          <td class="td-brand">CUMMINS</td>
+          <td><span class="stock-dot consult">Consultar</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Transmisión en la misma página -->
+    <div style="margin-top:24px;">
+      <div class="cat-header">
+        <div class="cat-header-left">
+          <div class="cat-label">Categoría 02</div>
+          <div class="cat-name">Transmisión</div>
+        </div>
+        <div class="cat-header-logo">TRX</div>
+      </div>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th style="width:28px">#</th>
+            <th style="width:42%">Descripción del Repuesto</th>
+            <th>Referencia</th>
+            <th>Marca</th>
+            <th>Stock</th>
+            <th>Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-num">05</td>
+            <td><div class="td-name">Kit de Embrague Volvo FH</div></td>
+            <td class="td-ref">ZF-1878000427</td>
+            <td class="td-brand">ZF</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td><span class="tag-pill">Original</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">06</td>
+            <td><div class="td-name">Caja de Transferencia 4WD</div></td>
+            <td class="td-ref">ZF-6HP26X</td>
+            <td class="td-brand">ZF</td>
+            <td><span class="stock-dot consult">Consultar</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="td-num">07</td>
+            <td><div class="td-name">Cardán Propulsor Universal</div></td>
+            <td class="td-ref">VOL-20701849</td>
+            <td class="td-brand">VOLVO</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td><span class="tag-pill">Original</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="contact-band">
+      <div class="contact-band-text">maquiparts.co · Colombia desde 1998 · Distribuidores autorizados</div>
+      <div class="contact-band-wapp">WhatsApp +57 300 123 4567</div>
+    </div>
+  </div>
+
+  <!-- ══ FRENOS + SUSPENSIÓN ══ -->
+  <div class="category-page">
+    <div class="cat-header">
+      <div class="cat-header-left">
+        <div class="cat-label">Categoría 03</div>
+        <div class="cat-name">Frenos</div>
+      </div>
+      <div class="cat-header-logo">FRN</div>
+    </div>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th style="width:28px">#</th>
+          <th style="width:42%">Descripción del Repuesto</th>
+          <th>Referencia</th>
+          <th>Marca</th>
+          <th>Stock</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-num">08</td>
+          <td><div class="td-name">Tambor de Freno Trasero Mack</div></td>
+          <td class="td-ref">BDX-6089966</td>
+          <td class="td-brand">BENDIX</td>
+          <td><span class="stock-dot in-stock">En stock</span></td>
+          <td><span class="tag-pill">Stock disponible</span></td>
+        </tr>
+        <tr>
+          <td class="td-num">09</td>
+          <td><div class="td-name">Regulador Automático ABS</div></td>
+          <td class="td-ref">WBC-4209000262</td>
+          <td class="td-brand">WABCO</td>
+          <td><span class="stock-dot in-stock">En stock</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:24px;">
+      <div class="cat-header">
+        <div class="cat-header-left">
+          <div class="cat-label">Categoría 04</div>
+          <div class="cat-name">Suspensión</div>
+        </div>
+        <div class="cat-header-logo">SUS</div>
+      </div>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th style="width:28px">#</th>
+            <th style="width:42%">Descripción del Repuesto</th>
+            <th>Referencia</th>
+            <th>Marca</th>
+            <th>Stock</th>
+            <th>Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-num">10</td>
+            <td><div class="td-name">Bolsa de Aire Suspensión Trasera</div></td>
+            <td class="td-ref">FIR-W01358-6928</td>
+            <td class="td-brand">FIRESTONE</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td><span class="tag-pill">Alta demanda</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">11</td>
+            <td><div class="td-name">Muñón de Dirección Volvo FH16</div></td>
+            <td class="td-ref">VOL-20517109</td>
+            <td class="td-brand">VOLVO</td>
+            <td><span class="stock-dot consult">Consultar</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="td-num">12</td>
+            <td><div class="td-name">Amortiguador Cabina Mack CH</div></td>
+            <td class="td-ref">GAT-KS3068</td>
+            <td class="td-brand">GATES</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="contact-band">
+      <div class="contact-band-text">maquiparts.co · Colombia desde 1998 · Distribuidores autorizados</div>
+      <div class="contact-band-wapp">WhatsApp +57 300 123 4567</div>
+    </div>
+  </div>
+
+  <!-- ══ RODAMIENTOS + HIDRÁULICA + ELÉCTRICO + FILTROS ══ -->
+  <div class="category-page">
+    <div class="cat-header">
+      <div class="cat-header-left">
+        <div class="cat-label">Categoría 05</div>
+        <div class="cat-name">Rodamientos</div>
+      </div>
+      <div class="cat-header-logo">ROD</div>
+    </div>
+    <table class="product-table">
+      <thead>
+        <tr>
+          <th style="width:28px">#</th>
+          <th style="width:42%">Descripción del Repuesto</th>
+          <th>Referencia</th>
+          <th>Marca</th>
+          <th>Stock</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-num">13</td>
+          <td><div class="td-name">Rodamiento Rueda Delantera</div></td>
+          <td class="td-ref">SKF-VKBA3921</td>
+          <td class="td-brand">SKF</td>
+          <td><span class="stock-dot in-stock">En stock</span></td>
+          <td><span class="tag-pill">Original</span></td>
+        </tr>
+        <tr>
+          <td class="td-num">14</td>
+          <td><div class="td-name">Rodamiento Cónico Serie 32000</div></td>
+          <td class="td-ref">TMK-32215</td>
+          <td class="td-brand">TIMKEN</td>
+          <td><span class="stock-dot in-stock">En stock</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:20px;">
+      <div class="cat-header">
+        <div class="cat-header-left">
+          <div class="cat-label">Categoría 06</div>
+          <div class="cat-name">Hidráulica</div>
+        </div>
+        <div class="cat-header-logo">HID</div>
+      </div>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th style="width:28px">#</th>
+            <th style="width:42%">Descripción del Repuesto</th>
+            <th>Referencia</th>
+            <th>Marca</th>
+            <th>Stock</th>
+            <th>Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-num">15</td>
+            <td><div class="td-name">Bomba Hidráulica Excavadora</div></td>
+            <td class="td-ref">PK-PVH131R01AF30A</td>
+            <td class="td-brand">PARKER</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="td-num">16</td>
+            <td><div class="td-name">Cilindro Hidráulico Doble Efecto</div></td>
+            <td class="td-ref">PK-2H-series</td>
+            <td class="td-brand">PARKER</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="cat-header">
+        <div class="cat-header-left">
+          <div class="cat-label">Categoría 07</div>
+          <div class="cat-name">Eléctrico</div>
+        </div>
+        <div class="cat-header-logo">ELC</div>
+      </div>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th style="width:28px">#</th>
+            <th style="width:42%">Descripción del Repuesto</th>
+            <th>Referencia</th>
+            <th>Marca</th>
+            <th>Stock</th>
+            <th>Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-num">17</td>
+            <td><div class="td-name">Alternador 24V Cummins</div></td>
+            <td class="td-ref">BSH-0120685152</td>
+            <td class="td-brand">BOSCH</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td><span class="tag-pill">Stock disponible</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">18</td>
+            <td><div class="td-name">Motor de Arranque Caterpillar</div></td>
+            <td class="td-ref">BSH-0001416006</td>
+            <td class="td-brand">BOSCH</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="cat-header">
+        <div class="cat-header-left">
+          <div class="cat-label">Categoría 08</div>
+          <div class="cat-name">Filtros</div>
+        </div>
+        <div class="cat-header-logo">FLT</div>
+      </div>
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th style="width:28px">#</th>
+            <th style="width:42%">Descripción del Repuesto</th>
+            <th>Referencia</th>
+            <th>Marca</th>
+            <th>Stock</th>
+            <th>Nota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-num">19</td>
+            <td><div class="td-name">Kit de Filtros Caterpillar C15</div></td>
+            <td class="td-ref">CAT-1R-0750</td>
+            <td class="td-brand">CAT</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td><span class="tag-pill">Alta demanda</span></td>
+          </tr>
+          <tr>
+            <td class="td-num">20</td>
+            <td><div class="td-name">Filtro Separador de Combustible</div></td>
+            <td class="td-ref">PK-RFB25120MB</td>
+            <td class="td-brand">PARKER</td>
+            <td><span class="stock-dot in-stock">En stock</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="contact-band" style="margin-top:24px;">
+      <div class="contact-band-text">Catálogo sujeto a disponibilidad de stock · Precios bajo solicitud · Garantía de fábrica en todos los productos</div>
+      <div class="contact-band-wapp">WhatsApp +57 300 123 4567</div>
+    </div>
+  </div>
+
+</body>
+</html>
